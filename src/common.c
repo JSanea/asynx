@@ -1,7 +1,7 @@
 
 #include "common.h"
 
-s32 set_nonblocking(SOCKET sock) {
+s32  ax_set_nonblocking(SOCKET sock) {
     #ifdef _WIN32
         u_long mode = 1;
         return ioctlsocket(sock, FIONBIO, &mode);

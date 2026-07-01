@@ -29,7 +29,7 @@ typedef struct {
     #else
         pthread_t thread; // POSIX thread
     #endif
-}maio_thread_t;
+}ax_thread_t;
 
 // Mutex structure
 typedef struct{
@@ -38,7 +38,7 @@ typedef struct{
     #else
         pthread_mutex_t mutex; // POSIX mutex
     #endif
-}maio_mutex_t;
+}ax_mutex_t;
 
 // Condition variable structure
 typedef struct{
@@ -47,7 +47,7 @@ typedef struct{
     #else
         pthread_cond_t cond;   // POSIX condition variable
     #endif
-}maio_cond_t;
+}ax_cond_t;
 
 // Reader-writer lock structure
 typedef struct {
@@ -56,41 +56,41 @@ typedef struct {
     #else
         pthread_rwlock_t rw_lock; // POSIX pthread_rwlock_t
     #endif
-} maio_rwlock_t;
+} ax_rwlock_t;
 
 /*
 * Thread functions
 */
-extern s32 maio_thread_create(maio_thread_t* thread, void* (*start_routine)(void*), void* arg);
-extern s32 maio_thread_join(maio_thread_t* thread);
-extern s32 maio_thread_detach(maio_thread_t* thread);
-extern void maio_thread_exit(void* retval);     
+extern s32 ax_thread_create(ax_thread_t* thread, void* (*start_routine)(void*), void* arg);
+extern s32 ax_thread_join(ax_thread_t* thread);
+extern s32 ax_thread_detach(ax_thread_t* thread);
+extern void ax_thread_exit(void* retval);     
 
 /*
 * Mutex functions
 */
-extern s32 maio_mutex_init(maio_mutex_t* mutex);
-extern s32 maio_mutex_lock(maio_mutex_t* mutex);        
-extern s32 maio_mutex_unlock(maio_mutex_t* mutex);
-extern s32 maio_mutex_destroy(maio_mutex_t* mutex);
+extern s32 ax_mutex_init(ax_mutex_t* mutex);
+extern s32 ax_mutex_lock(ax_mutex_t* mutex);        
+extern s32 ax_mutex_unlock(ax_mutex_t* mutex);
+extern s32 ax_mutex_destroy(ax_mutex_t* mutex);
 
 /*
 * Condition variable functions
 */
-extern s32 maio_cond_init(maio_cond_t* cond);
-extern s32 maio_cond_wait(maio_cond_t* cond, maio_mutex_t* mutex);
-extern s32 maio_cond_signal(maio_cond_t* cond);     
-extern s32 maio_cond_broadcast(maio_cond_t* cond);
-extern s32 maio_cond_destroy(maio_cond_t* cond);
+extern s32 ax_cond_init(ax_cond_t* cond);
+extern s32 ax_cond_wait(ax_cond_t* cond, ax_mutex_t* mutex);
+extern s32 ax_cond_signal(ax_cond_t* cond);     
+extern s32 ax_cond_broadcast(ax_cond_t* cond);
+extern s32 ax_cond_destroy(ax_cond_t* cond);
 
 /*
 * Reader-writer lock functions
 */      
-extern s32 maio_rwlock_init(maio_rwlock_t* lock);
-extern s32 maio_rwlock_rdlock(maio_rwlock_t* lock);
-extern s32 maio_rwlock_wrlock(maio_rwlock_t* lock);
-extern s32 maio_rwlock_unlock(maio_rwlock_t* lock);
-extern s32 maio_rwlock_destroy(maio_rwlock_t* lock);
+extern s32 ax_rwlock_init(ax_rwlock_t* lock);
+extern s32 ax_rwlock_rdlock(ax_rwlock_t* lock);
+extern s32 ax_rwlock_wrlock(ax_rwlock_t* lock);
+extern s32 ax_rwlock_unlock(ax_rwlock_t* lock);
+extern s32 ax_rwlock_destroy(ax_rwlock_t* lock);
 
 
 #endif //THREAD_h

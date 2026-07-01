@@ -32,19 +32,19 @@ enum {
     EVENT_TYPE_FILE  = 4,
     EVENT_TYPE_READ  = 8,
     EVENT_TYPE_WRITE = 16
-}maio_event_type_e;
+}ax_event_type_e;
 
 
 typedef struct event_ctx_s{
-    maio_event_type_e type;  // event type
+    ax_event_type_e type;  // event type
     callback_t cb;           // callback function
     void* arg;               // argument for callback function
-    maio_buff_span_t buff;   // associated buffer
-}maio_event_ctx_t;
+    ax_buff_span_t buff;   // associated buffer
+}ax_event_ctx_t;
 
 
 typedef struct event_s {
-    maio_event_ctx_t* ctx;
+    ax_event_ctx_t* ctx;
 
     union {
         #if defined(__linux__)
@@ -58,10 +58,10 @@ typedef struct event_s {
             } win;
         #endif
     } ev_handle;
-} maio_event_t;
+} ax_event_t;
 
 
-static inline void maio_free_event(maio_event_t* ev){
+static inline void ax_free_event(ax_event_t* ev){
     if(ev == NULL) return;
 
     if(ev->ctx){

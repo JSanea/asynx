@@ -19,20 +19,20 @@
 typedef struct {
     void (*func)(void*);
     void* arg;
-} maio_task_t;
+} ax_task_t;
 
 typedef struct {
-    maio_thread_t* threads;  // Array of worker threads
+    ax_thread_t* threads;  // Array of worker threads
     u32 thread_count;        // Number of threads in the pool
     queue_t* task_queue;      // Queue to hold tasks
-    maio_mutex_t lock;       // Mutex to protect access to the task queue
-    maio_cond_t notify;      // Condition variable to signal worker threads
+    ax_mutex_t lock;       // Mutex to protect access to the task queue
+    ax_cond_t notify;      // Condition variable to signal worker threads
     bool shut_down;          // Flag to indicate if the pool is shutting down
-} maio_threadpool_t;
+} ax_threadpool_t;
 
-extern s32 maio_threadpool_init();
-extern s32 maio_threadpool_submit(void (*function)(void*), void* arg);
-extern s32 maio_threadpool_shutdown();
+extern s32 ax_threadpool_init();
+extern s32 ax_threadpool_submit(void (*function)(void*), void* arg);
+extern s32 ax_threadpool_shutdown();
 
 
 #endif //THREAD_POOL_H

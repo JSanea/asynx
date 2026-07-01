@@ -13,11 +13,12 @@
 #include <arpa/inet.h>
 #include <stdio.h>
 #include <errno.h>
-#include "typedefs.h
 
 typedef s32 SOCKET;
 #endif
 
-extern s32 set_nonblocking(SOCKET sock); // Function to set a socket to non-blocking mode
+#include "typedefs.h
+
+extern s32 ax_set_nonblocking(SOCKET sock); // Function to set a socket to non-blocking mode
 
 #endif // COMMON_H
