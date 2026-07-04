@@ -15,20 +15,20 @@ static void* ax_worker(void* arg){
     (void)arg; 
 
     while(true){
-        ax_mutex_lock(&pool->lock);
+        ax_mutex_lock(&pool.lock);
 
-        while(is_empty(&pool->task_queue) && !pool->shut_down){
-            ax_cond_wait(&pool->notify, &pool->lock);
+        while(is_empty(pool.task_queue) && !pool.shut_down){
+            ax_cond_wait(&pool.notify, &pool.lock);
         }
 
-        if(is_empty(&pool->task_queue) && pool->shut_down){
-            ax_mutex_unlock(&pool->lock);
+        if(is_empty(pool.task_queue) && pool.shut_down){
+            ax_mutex_unlock(&pool.lock);
             break;
         }
 
-        ax_task_t* task = (ax_task_t*)dequeue(&pool->task_queue);
+        ax_task_t* task = (ax_task_t*)dequeue(pool.task_queue);
 
-        ax_mutex_unlock(&pool->lock);
+        ax_mutex_unlock(&pool.lock);
 
         if(task){
             task->func(task->arg);
@@ -88,7 +88,7 @@ s32 ax_threadpool_shutdown(){
     ax_mutex_unlock(&pool.lock);
 
     for(u32 i = 0; i < pool.thread_count; i++){
-        ax_thread_join(pool.threads[i], NULL);
+        ax_thread_join(&pool.threads[i]);
     }
 
     free(pool.threads);

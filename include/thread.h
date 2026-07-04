@@ -18,7 +18,7 @@
 #else
 #include <pthread.h>
 #endif
-
+#include <stdio.h>
 #include "typedefs.h"
 
 // Thread structure
@@ -54,7 +54,7 @@ typedef struct {
     #if defined(_WIN32)
         SRWLOCK rw_lock; // Windows SRWLOCK
     #else
-        pthread_rwlock_t rw_lock; // POSIX pthread_rwlock_t
+        pthread_rwlock_t rw_lock; // POSIX pthread_rwlock_t TODO: Uncomment this line if you want to use POSIX rwlocks
     #endif
 } ax_rwlock_t;
 

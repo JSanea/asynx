@@ -14,7 +14,7 @@
 #include "thread.h"
 #include "queue.h"
 #include "config.h"
-
+#include "typedefs.h"
 
 typedef struct {
     void (*func)(void*);
